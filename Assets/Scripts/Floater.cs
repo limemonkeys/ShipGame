@@ -1,27 +1,23 @@
-﻿using System.Collections;
+﻿//https://www.youtube.com/watch?v=eL_zHQEju8s&t=510s
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Floater: MonoBehaviour
 {
-	public float waterLevel = 0.0f;
-	public float floatThreshold = 2.0f;
-	public float waterDensity = 0.125f;
-	public float downForce = 4.0f;
 
-	private float forceFactor;
-	private Vector3 floatForce;
+	public Rigidbody rigidbody;
+	public float depthBeforeSubmerged = 0.5f;
+	public float displacementAmount = 3.0f;
 
-	void FixedUpdate()
+	private void FixedUpdate()
 	{
-		forceFactor = 1.0f - ((transform.position.y - waterLevel) / floatThreshold);
 
-		if (forceFactor > 0.0f)
+		if (transform.position.y < 0.0f)
 		{
-			floatForce = -Physics.gravity * GetComponent<Rigidbody>().mass * (forceFactor - GetComponent<Rigidbody>().velocity.y * waterDensity);
-			floatForce += new Vector3(0.0f, -downForce * GetComponent<Rigidbody>().mass, 0.0f);
-			GetComponent<Rigidbody>().AddForceAtPosition(floatForce, transform.position);
+			float displacementMultiplier = Mathf.Clamp01(-transform.position.y / depthBeforeSubmerged) * displacementAmount;
+			rigidbody.AddForce(new Vector3(0f, Mathf.Abs(Physics.gravity.y) * displacementMultiplier, 0.0f), ForceMode.Acceleration);
 		}
 	}
 }
