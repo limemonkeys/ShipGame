@@ -20,7 +20,10 @@ public class BowHitbox : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy") 
         {
-            Destroy(other.gameObject);
+            if (other.gameObject.name == "Starboard" || other.gameObject.name == "Port") 
+            {
+                Destroy(other.transform.parent.gameObject);
+            }
         }
         
     }
