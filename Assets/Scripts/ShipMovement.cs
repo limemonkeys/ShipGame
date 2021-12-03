@@ -16,7 +16,6 @@ public class ShipMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.W)) {
-            Debug.Log(transform.forward * 2);
             Rigidbody.AddForce(transform.forward * 2);
         }
 

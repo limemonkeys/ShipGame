@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
         pivot.transform.parent = target.transform;
         */
         playerTransform = player.transform;
-        offset = new Vector3(playerTransform.position.x, playerTransform.position.y + yOffset, playerTransform.position.z + zOffset);
+        offset = new Vector3(playerTransform.position.x, playerTransform.position.y + yOffset, playerTransform.position.z - zOffset);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
