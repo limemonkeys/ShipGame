@@ -11,7 +11,8 @@ public class Floater: MonoBehaviour
 	public float depthBeforeSubmerged = 0.5f;
 	public float displacementAmount = 3.0f;
 
-	private void FixedUpdate()
+
+	void Update()
 	{
 
 		if (transform.position.y < 0.0f)

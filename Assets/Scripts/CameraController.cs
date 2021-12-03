@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿//https://stackoverflow.com/questions/56382451/how-to-rotate-camera-around-player-in-unity-c-sharp
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    /*
     public Transform target;
     public Vector3 offset;
     public bool useOffsetValues;
@@ -14,9 +17,19 @@ public class CameraController : MonoBehaviour
 
     public float maxViewAngle;
     public float minViewAngle;
+    */
+
+    public float turnSpeed = 5.0f;
+    public GameObject player;
+
+    private Transform playerTransform;
+    private Vector3 offset;
+    public float yOffset = 10.0f;
+    public float zOffset = 10.0f;
 
     void Start()
     {
+        /*
         if (!useOffsetValues)
         {
             offset = target.position - transform.position;
@@ -24,13 +37,16 @@ public class CameraController : MonoBehaviour
 
         pivot.transform.position = target.transform.position;
         pivot.transform.parent = target.transform;
-
+        */
+        playerTransform = player.transform;
+        offset = new Vector3(playerTransform.position.x, playerTransform.position.y + yOffset, playerTransform.position.z + zOffset);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        /*
         // Get x position of mouse and rotate target player
         float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
         target.Rotate(0, horizontal, 0);
@@ -58,7 +74,7 @@ public class CameraController : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
         transform.position = target.position - (rotation * offset);
 
-        //transform.position = target.position - offset;
+        transform.position = target.position - offset;
 
         // Ensure camera does not move below the floor 
         if (transform.position.y < target.position.y)
@@ -67,5 +83,10 @@ public class CameraController : MonoBehaviour
         }
 
         transform.LookAt(target);
+        */
+
+        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * turnSpeed, Vector3.up) * offset;
+        transform.position = playerTransform.position + offset;
+        transform.LookAt(playerTransform.position);
     }
 }
