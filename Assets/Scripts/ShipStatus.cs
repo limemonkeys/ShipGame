@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShipStatus : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public TextMeshProUGUI HealthText;
+    public int maxHealth;
+    public int currentHealth;
 
-    // Update is called once per frame
-    void Update()
+    public void DamagePlayer(int damageAmount) 
     {
-        
+        currentHealth = currentHealth - 1;
+        if (currentHealth < 0) {
+            currentHealth = 0;
+        }
+        HealthText.SetText("Health " + currentHealth);
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -1,41 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+
 
 public class BowHitbox : MonoBehaviour
 {
-    public TextMeshProUGUI HealthText;
-    public int maxHealth;
-    public int currentHealth;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy") 
+        // Damage if player and enemy collide
+        if (other.gameObject.tag == "Enemy")
         {
-            if (other.gameObject.name == "Starboard" || other.gameObject.name == "Port") 
+            if (other.gameObject.name == "Starboard" || other.gameObject.name == "Port")
             {
-                Destroy(other.transform.parent.gameObject);
+                other.transform.parent.gameObject.GetComponent<EnemyShipStatus>().DamageEnemy(3);
+                this.transform.parent.gameObject.GetComponent<ShipStatus>().DamagePlayer(1);
             }
 
-            if (other.gameObject.name == "Bow" || other.gameObject.name == "Stern")
+            else if (other.gameObject.name == "Bow" || other.gameObject.name == "Stern")
             {
-                Destroy(other.transform.parent.gameObject);
+                other.transform.parent.gameObject.GetComponent<EnemyShipStatus>().DamageEnemy(1);
+                this.transform.parent.gameObject.GetComponent<ShipStatus>().DamagePlayer(1);
             }
         }
-        
+        // Damage only to player if hitting terrain
+        else if (other.gameObject.tag != "Water")
+        {
+            this.transform.parent.gameObject.GetComponent<ShipStatus>().DamagePlayer(1);
+        }
     }
-
 }
