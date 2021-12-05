@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿//https://www.youtube.com/watch?v=BLfNP4Sc_iA
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class ShipStatus : MonoBehaviour
@@ -16,6 +18,20 @@ public class ShipStatus : MonoBehaviour
     public bool triggerFinger = false;
     public bool trident = false;
     public bool megaFuel = false;
+
+    public Slider slider;
+
+    void Start() 
+    {
+        currentHealth = maxHealth;
+        slider.maxValue = currentHealth;
+    }
+
+    public void UpdateHealth() 
+    {
+        slider.value = currentHealth;
+    }
+
 
     public void DamagePlayer(int damageAmount) 
     {
@@ -40,6 +56,7 @@ public class ShipStatus : MonoBehaviour
             playerFire.Stop();
         }
         HealthText.SetText("Health " + currentHealth);
+        UpdateHealth();
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
@@ -69,6 +86,7 @@ public class ShipStatus : MonoBehaviour
             playerFire.Stop();
         }
         HealthText.SetText("Health: " + currentHealth);
+        UpdateHealth();
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
@@ -81,6 +99,7 @@ public class ShipStatus : MonoBehaviour
         playerSmoke.Stop();
         playerFire.Stop();
         HealthText.SetText("Health " + currentHealth);
+        UpdateHealth();
         if (currentHealth <= 0)
         {
             Destroy(gameObject);

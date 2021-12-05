@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCannons : MonoBehaviour
 {
@@ -43,9 +44,16 @@ public class PlayerCannons : MonoBehaviour
     public bool triggerFingerActive = false;
     public float triggerFingerDuration = 0f;
 
+    public Slider portCannonSlider;
+    public Slider starboardCannonSlider;
+
+ 
+
     // Update is called once per frame
     void Update()
     {
+        portCannonSlider.value = Time.time;
+        starboardCannonSlider.value = Time.time;
         if (tridentActive) 
         {
             tridentDuration -= Time.deltaTime;
@@ -83,7 +91,9 @@ public class PlayerCannons : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && Time.time >= reloadingPort) 
         {
+            portCannonSlider.minValue = Time.time;
             reloadingPort = Time.time + fps;
+            portCannonSlider.maxValue = reloadingPort;
             flashPort.Play();
             ShootPortside();
             if (tridentActive) 
@@ -98,7 +108,9 @@ public class PlayerCannons : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Mouse1) && Time.time >= reloadingStarboard)
         {
+            starboardCannonSlider.minValue = Time.time;
             reloadingStarboard = Time.time + fps;
+            starboardCannonSlider.maxValue = reloadingStarboard;
             flashStarboard.Play();
             ShootStarboardSide();
             if (tridentActive)
