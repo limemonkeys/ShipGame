@@ -7,10 +7,25 @@ public class ShipMovement : MonoBehaviour
     public Rigidbody Rigidbody;
     int currSpeed = 0;
 
-    // Start is called before the first frame update
-    public void Awake()
+    float turnSpeed = 0.5f;
+    int accelSpeed = 2;
+
+    public bool megaFuelActive;
+    public float megaFuelDuration = 0f;
+
+    void Update() 
     {
-        
+        if (megaFuelActive)
+        {
+            megaFuelDuration -= Time.deltaTime;
+            if (megaFuelDuration < 0f)
+            {
+                accelSpeed /= 2;
+                megaFuelActive = false;
+                megaFuelDuration = 0f;
+
+            }
+        }
     }
 
     // Update is called once per frame
@@ -23,25 +38,25 @@ public class ShipMovement : MonoBehaviour
                 currSpeed += 3;
             }
             Rigidbody.AddForce(transform.forward * 2);
-            currSpeed += 2;
+            currSpeed += accelSpeed;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             Rigidbody.AddForce(transform.forward * -currSpeed);
             //Rigidbody.AddForce(transform.forward * -1);
-            Rigidbody.transform.Rotate(0f, -0.5f, 0f, Space.Self);
+            Rigidbody.transform.Rotate(0f, -turnSpeed, 0f, Space.Self);
             if (currSpeed >= 2) {
                 Rigidbody.AddForce(transform.forward * (currSpeed - 2));
                 currSpeed = currSpeed - 2;
             }
         }
 
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             Rigidbody.AddForce(transform.forward * -currSpeed);
             //Rigidbody.AddForce(transform.forward * -1);
-            Rigidbody.transform.Rotate(0f, 0.5f, 0f, Space.Self);
+            Rigidbody.transform.Rotate(0f, turnSpeed, 0f, Space.Self);
             if (currSpeed >= 2)
             {
                 Rigidbody.AddForce(transform.forward * (currSpeed - 2));
@@ -49,5 +64,12 @@ public class ShipMovement : MonoBehaviour
             }
         }
 
+    }
+
+    public void ActivateMegaFuel()
+    {
+        megaFuelActive = true;
+        accelSpeed *= 2;
+        megaFuelDuration = Time.time + 15f;
     }
 }

@@ -23,7 +23,7 @@ public class BowHitbox : MonoBehaviour
             }
         }
         // Damage only to player if hitting terrain
-        else if (other.gameObject.tag != "Water")
+        else if (other.gameObject.tag != "Water" && other.gameObject.tag != "Powerup")
         {
             this.transform.parent.gameObject.GetComponent<ShipStatus>().DamagePlayer(1);
         }

@@ -12,7 +12,7 @@ public class EnemyShipStatus : MonoBehaviour
 
     public void DamageEnemy(int damageAmount)
     {
-        currentHealth = currentHealth - 1;
+        currentHealth = currentHealth - damageAmount;
         if (currentHealth < 0)
         {
             currentHealth = 0;
