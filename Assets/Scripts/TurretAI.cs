@@ -31,4 +31,8 @@ public class TurretAI : MonoBehaviour
 
         }
     }
+    void Die()
+    {
+
+    }
 }

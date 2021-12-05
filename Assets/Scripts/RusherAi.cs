@@ -30,4 +30,8 @@ public class RusherAi : MonoBehaviour
 
         }
     }
+    void Die()
+    {
+
+    }
 }

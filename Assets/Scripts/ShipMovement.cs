@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipMovement : MonoBehaviour
 {
     public Rigidbody Rigidbody;
-    int currSpeed = 0;
+    public int currSpeed = 0;
 
     // Start is called before the first frame update
     public void Awake()
@@ -20,7 +20,7 @@ public class ShipMovement : MonoBehaviour
             if (currSpeed <= 0)
             {
                 Rigidbody.AddForce(transform.forward * 3);
-                currSpeed += 3;
+                currSpeed += 5;
             }
             Rigidbody.AddForce(transform.forward * 2);
             currSpeed += 2;
@@ -28,24 +28,30 @@ public class ShipMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            Rigidbody.AddForce(transform.forward * -currSpeed);
+            if (currSpeed > 0)
+            {
+                Rigidbody.AddForce(transform.forward * -currSpeed);
+            }
             //Rigidbody.AddForce(transform.forward * -1);
-            Rigidbody.transform.Rotate(0f, -0.5f, 0f, Space.Self);
-            if (currSpeed >= 2) {
-                Rigidbody.AddForce(transform.forward * (currSpeed - 2));
-                currSpeed = currSpeed - 2;
+            Rigidbody.transform.Rotate(0f, -0.6f, 0f, Space.Self);
+            if (currSpeed >= 1) {
+                Rigidbody.AddForce(transform.forward * (currSpeed - 1));
+                currSpeed = currSpeed - 1;
             }
         }
 
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
-            Rigidbody.AddForce(transform.forward * -currSpeed);
-            //Rigidbody.AddForce(transform.forward * -1);
-            Rigidbody.transform.Rotate(0f, 0.5f, 0f, Space.Self);
-            if (currSpeed >= 2)
+            if (currSpeed > 0)
             {
-                Rigidbody.AddForce(transform.forward * (currSpeed - 2));
-                currSpeed = currSpeed - 2;
+                Rigidbody.AddForce(transform.forward * -currSpeed);
+            }
+            //Rigidbody.AddForce(transform.forward * -1);
+            Rigidbody.transform.Rotate(0f, 0.6f, 0f, Space.Self);
+            if (currSpeed >= 1)
+            {
+                Rigidbody.AddForce(transform.forward * (currSpeed - 1));
+                currSpeed = currSpeed - 1;
             }
         }
 
