@@ -84,4 +84,14 @@ public class ShipMovement : MonoBehaviour
         accelSpeed += 1;
         megaFuelDuration = Time.time + 15f;
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag != "Water" && other.gameObject.tag != "Powerups")
+        {
+            currSpeed = 0;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        }
+    }
 }
