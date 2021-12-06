@@ -6,6 +6,7 @@ public class ShipMovement : MonoBehaviour
 {
     public Rigidbody Rigidbody;
     public int currSpeed = 0;
+    public Transform shipBow;
 
     // Start is called before the first frame update
     public void Awake()
@@ -55,5 +56,14 @@ public class ShipMovement : MonoBehaviour
             }
         }
 
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag != "Water")
+        {
+            currSpeed = 0;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        }
     }
 }

@@ -9,7 +9,6 @@ public class RusherAi : MonoBehaviour
     int MoveSpeed = 4;
     public Transform Player;
     public Transform shipBow;
-    public bool triggered = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +31,6 @@ public class RusherAi : MonoBehaviour
     {
         if (other.gameObject.tag == "Terrain")
         {
-            triggered = true;
             transform.Translate(1, 0, 0);
         }
     }
