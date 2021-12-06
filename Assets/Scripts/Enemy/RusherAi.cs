@@ -34,12 +34,4 @@ public class RusherAi : MonoBehaviour
             transform.Translate(1, 0, 0);
         }
     }
-    void OnTriggerExit(Collider other)
-    {
-        triggered = false;
-    }
-    void Die()
-    {
-
-    }
 }
