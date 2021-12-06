@@ -13,6 +13,18 @@ public class ShipMovement : MonoBehaviour
     public bool megaFuelActive;
     public float megaFuelDuration = 0f;
 
+    void Start() 
+    {
+        if (PlayerSelectController.player == "money") 
+        {
+            accelSpeed = 3;
+        }
+        if (PlayerSelectController.player == "strong")
+        {
+            turnSpeed = 0.65f;
+        }
+    }
+
     void Update() 
     {
         if (megaFuelActive)
@@ -20,7 +32,7 @@ public class ShipMovement : MonoBehaviour
             megaFuelDuration -= Time.deltaTime;
             if (megaFuelDuration < 0f)
             {
-                accelSpeed -= 2;
+                accelSpeed -= 1;
                 megaFuelActive = false;
                 megaFuelDuration = 0f;
 

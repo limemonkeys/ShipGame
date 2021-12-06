@@ -1023,6 +1023,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6c67e845815f04f942f02bc0f43ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenu: {fileID: 0}
+  levelSelect: {fileID: 0}
+  characterSelect: {fileID: 0}
 --- !u!114 &776072024
 MonoBehaviour:
   m_ObjectHideFlags: 0

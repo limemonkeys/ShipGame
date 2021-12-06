@@ -8,7 +8,7 @@ using TMPro;
 public class ShipStatus : MonoBehaviour
 {
     public TextMeshProUGUI HealthText;
-    public int maxHealth;
+    public int maxHealth = 10;
     public int currentHealth;
 
     public ParticleSystem playerSmoke;
@@ -25,6 +25,10 @@ public class ShipStatus : MonoBehaviour
 
     void Start() 
     {
+        if (PlayerSelectController.player == "tank")
+        {
+            maxHealth = 11;
+        }
         currentHealth = maxHealth;
         slider.maxValue = currentHealth;
     }

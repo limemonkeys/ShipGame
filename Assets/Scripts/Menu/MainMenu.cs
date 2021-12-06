@@ -7,24 +7,19 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenu;
-    public GameObject levelSelect;
+    public GameObject characterSelect;
 
-    public void PlayGame()
+    public void PlayGame(string character)
     {
+        PlayerSelectController.player = character;
         SceneManager.LoadScene("WaterSim");
     }
 
-    public void LevelSelect()
+    public void SelectCharacter() 
     {
         mainMenu.SetActive(false);
-        levelSelect.SetActive(true);
+        characterSelect.SetActive(true);
     }
-
-    public void SelectFour() 
-    {
-        SceneManager.LoadScene("LevelFour");
-    }
-
 
     public void QuitGame()
     {
