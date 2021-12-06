@@ -21,6 +21,8 @@ public class ShipStatus : MonoBehaviour
 
     public Slider slider;
 
+    public AudioSource selfDamage;
+
     void Start() 
     {
         currentHealth = maxHealth;
@@ -35,6 +37,7 @@ public class ShipStatus : MonoBehaviour
 
     public void DamagePlayer(int damageAmount) 
     {
+        selfDamage.Play();
         currentHealth = currentHealth - 1;
         if (currentHealth < 0)
         {

@@ -20,7 +20,7 @@ public class ShipMovement : MonoBehaviour
             megaFuelDuration -= Time.deltaTime;
             if (megaFuelDuration < 0f)
             {
-                accelSpeed /= 2;
+                accelSpeed -= 2;
                 megaFuelActive = false;
                 megaFuelDuration = 0f;
 
@@ -69,7 +69,7 @@ public class ShipMovement : MonoBehaviour
     public void ActivateMegaFuel()
     {
         megaFuelActive = true;
-        accelSpeed *= 2;
+        accelSpeed += 1;
         megaFuelDuration = Time.time + 15f;
     }
 }

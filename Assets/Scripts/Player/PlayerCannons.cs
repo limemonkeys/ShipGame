@@ -47,7 +47,14 @@ public class PlayerCannons : MonoBehaviour
     public Slider portCannonSlider;
     public Slider starboardCannonSlider;
 
- 
+    public AudioSource cannonPortSFX;
+    public AudioSource cannonStarboardSFX;
+
+    public AudioSource splashPortSFX;
+    public AudioSource splashStarboardSFX;
+
+    public AudioSource HitPortSFX;
+    public AudioSource HitStarboardSFX;
 
     // Update is called once per frame
     void Update()
@@ -91,6 +98,7 @@ public class PlayerCannons : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Mouse0) && Time.time >= reloadingPort) 
         {
+            cannonPortSFX.Play();
             portCannonSlider.minValue = Time.time;
             reloadingPort = Time.time + fps;
             portCannonSlider.maxValue = reloadingPort;
@@ -108,6 +116,7 @@ public class PlayerCannons : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Mouse1) && Time.time >= reloadingStarboard)
         {
+            cannonStarboardSFX.Play();
             starboardCannonSlider.minValue = Time.time;
             reloadingStarboard = Time.time + fps;
             starboardCannonSlider.maxValue = reloadingStarboard;
@@ -153,8 +162,17 @@ public class PlayerCannons : MonoBehaviour
         {
             if (hitPortside.transform.gameObject.tag == "Enemy")
             {
+                HitPortSFX.PlayDelayed(0.5f);
                 hitPortside.transform.gameObject.GetComponent<EnemyShipStatus>().DamageEnemy(damage);
             }
+            else
+            {
+                splashPortSFX.PlayDelayed(1);
+            }
+        }
+        else 
+        {
+            splashPortSFX.PlayDelayed(1);
         }
     }
 
@@ -166,8 +184,17 @@ public class PlayerCannons : MonoBehaviour
         {
             if (hitPortside.transform.gameObject.tag == "Enemy")
             {
+                HitPortSFX.PlayDelayed(0.5f);
                 hitPortside.transform.gameObject.GetComponent<EnemyShipStatus>().DamageEnemy(damage);
             }
+            else
+            {
+                splashPortSFX.PlayDelayed(1);
+            }
+        }
+        else
+        {
+            splashPortSFX.PlayDelayed(1);
         }
     }
 
@@ -179,8 +206,17 @@ public class PlayerCannons : MonoBehaviour
         {
             if (hitPortside.transform.gameObject.tag == "Enemy")
             {
+                HitPortSFX.PlayDelayed(0.5f);
                 hitPortside.transform.gameObject.GetComponent<EnemyShipStatus>().DamageEnemy(damage);
             }
+            else
+            {
+                splashPortSFX.PlayDelayed(1);
+            }
+        }
+        else
+        {
+            splashPortSFX.PlayDelayed(1);
         }
     }
 
@@ -192,8 +228,17 @@ public class PlayerCannons : MonoBehaviour
         {
             if (hitStarboardside.transform.gameObject.tag == "Enemy")
             {
+                HitStarboardSFX.PlayDelayed(0.5f);
                 hitStarboardside.transform.gameObject.GetComponent<EnemyShipStatus>().DamageEnemy(damage);
             }
+            else
+            {
+                splashStarboardSFX.PlayDelayed(1);
+            }
+        }
+        else
+        {
+            splashStarboardSFX.PlayDelayed(1);
         }
     }
 
@@ -205,8 +250,17 @@ public class PlayerCannons : MonoBehaviour
         {
             if (hitStarboardside.transform.gameObject.tag == "Enemy")
             {
+                HitStarboardSFX.PlayDelayed(0.5f);
                 hitStarboardside.transform.gameObject.GetComponent<EnemyShipStatus>().DamageEnemy(damage);
             }
+            else
+            {
+                splashStarboardSFX.PlayDelayed(1);
+            }
+        }
+        else
+        {
+            splashStarboardSFX.PlayDelayed(1);
         }
     }
 
@@ -218,8 +272,17 @@ public class PlayerCannons : MonoBehaviour
         {
             if (hitStarboardside.transform.gameObject.tag == "Enemy")
             {
+                HitStarboardSFX.PlayDelayed(0.5f);
                 hitStarboardside.transform.gameObject.GetComponent<EnemyShipStatus>().DamageEnemy(damage);
             }
+            else
+            {
+                splashStarboardSFX.PlayDelayed(1);
+            }
+        }
+        else
+        {
+            splashStarboardSFX.PlayDelayed(1);
         }
     }
 

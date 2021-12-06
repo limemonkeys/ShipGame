@@ -10,6 +10,8 @@ public class EnemyShipStatus : MonoBehaviour
     public ParticleSystem enemySmoke;
     public ParticleSystem enemyFire;
 
+    public AudioSource dealthSFX;
+
     public void DamageEnemy(int damageAmount)
     {
         currentHealth = currentHealth - damageAmount;
@@ -34,7 +36,9 @@ public class EnemyShipStatus : MonoBehaviour
         }
         if (currentHealth <= 0) 
         {
+            dealthSFX.PlayDelayed(2);
             Destroy(gameObject);
+
         }
     }
 }
